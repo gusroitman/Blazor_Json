@@ -1,0 +1,99 @@
+﻿@page "/crudexample"
+@using BlazorCrud.Data
+@using Newtonsoft.Json
+
+<PageTitle>Crud Example with Blazor using MudBlazor</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">Json Example with Blazor</MudText>
+<MudText Class="mb-8">This component demonstrates fetching & writing data from/to a json file.</MudText>
+@if (provinces == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+    <MudText>@Message</MudText>
+}
+else
+{
+    <Row>
+    <div class="d-flex ma-2">
+    <MudText class="mt-3">Ingrese el nombre del archivo Json que quiere crear : </MudText>
+
+    <MudTextField Style="width:300px" Margin="Margin.Dense" Inmediate="true" @bind-Value="jsonpath" Variant="Variant.Outlined"></MudTextField>
+        <MudButton Color="Color.Primary" Size="Size.Small" Clearable="true" Variant="Variant.Outlined" EndIcon="@Icons.Material.Filled.ArrowDownward" OnClick="WriteToJsonProvinces">
+    
+        @if (_processing)
+        {
+                        <MudText>Json saved!</MudText>
+        }
+        else
+        {
+                        <MudText>Download Json</MudText>
+        }
+        </MudButton>
+    </div>
+    </Row>
+    <MudTable Items="@provinces" Hover="true" SortLabel="Sort By" Elevation="0">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Provinces, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Capital)">Capital</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Population)">Population</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Territory)">Territory</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Capital">@context.Capital</MudTd>
+            <MudTd DataLabel="Population">@context.Population</MudTd>
+            <MudTd DataLabel="Territory">@context.Territory</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{50, 100}" />
+        </PagerContent>
+    </MudTable>
+}
+
+
+@code {
+    private List<Provinces> provinces = new List<Provinces>();
+    public string? Message { get; set; }
+    public string jsonpath { get; set; }
+    private bool _processing = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            GetAllProvinces();
+        }
+        catch (Exception e)
+        {
+            Message = e.Message;
+        }
+    }
+
+    public void GetAllProvinces()
+    {
+        using (StreamReader r = new StreamReader("provinces.json"))
+        {
+            string json = r.ReadToEnd();
+            provinces = JsonConvert.DeserializeObject<List<Provinces>>(json);
+        }
+
+    }
+
+    public void WriteToJsonProvinces()
+    {
+        string jpath = jsonpath + ".json";
+
+        List<Provinces> destination = provinces.Select(d => new Provinces
+            {
+                Name = d.Name,
+                Capital = d.Capital,
+                Population = d.Population,
+                Territory = d.Territory
+            }).ToList();
+
+        File.WriteAllText(jpath, JsonConvert.SerializeObject(destination, Formatting.Indented));
+        _processing = true;
+
+    }
+
+}
