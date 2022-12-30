@@ -9,147 +9,201 @@
     "PTotalTerritory": 11
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Catamarca",
+    "Capital": "S.F.V.Catamarca",
+    "Population": 415438,
+    "PTotalPopulation": 1,
+    "Density": 4.0,
+    "Territory": 102602,
+    "PTotalTerritory": 4
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Chaco",
+    "Capital": "Resistencia",
+    "Population": 1204541,
+    "PTotalPopulation": 3,
+    "Density": 12.0,
+    "Territory": 99633,
+    "PTotalTerritory": 4
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Chubut",
+    "Capital": "Rawson",
+    "Population": 618994,
+    "PTotalPopulation": 1,
+    "Density": 2.8,
+    "Territory": 224686,
+    "PTotalTerritory": 8
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Córdoba",
+    "Capital": "Córdoba",
+    "Population": 3760450,
+    "PTotalPopulation": 9,
+    "Density": 23.0,
+    "Territory": 165321,
+    "PTotalTerritory": 6
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Corrientes",
+    "Capital": "Corrientes",
+    "Population": 1120801,
+    "PTotalPopulation": 3,
+    "Density": 13.0,
+    "Territory": 88199,
+    "PTotalTerritory": 3
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Entre Rios",
+    "Capital": "Paraná",
+    "Population": 1385961,
+    "PTotalPopulation": 3,
+    "Density": 18.0,
+    "Territory": 78781,
+    "PTotalTerritory": 3
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Formosa",
+    "Capital": "Formosa",
+    "Population": 605193,
+    "PTotalPopulation": 1,
+    "Density": 8.4,
+    "Territory": 72066,
+    "PTotalTerritory": 3
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Jujuy",
+    "Capital": "San S. de Jujuy",
+    "Population": 770881,
+    "PTotalPopulation": 2,
+    "Density": 14.0,
+    "Territory": 53219,
+    "PTotalTerritory": 2
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "La Pampa",
+    "Capital": "La Pampa",
+    "Population": 358428,
+    "PTotalPopulation": 1,
+    "Density": 2.5,
+    "Territory": 143440,
+    "PTotalTerritory": 5
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "La Rioja",
+    "Capital": "La Rioja",
+    "Population": 393531,
+    "PTotalPopulation": 1,
+    "Density": 4.4,
+    "Territory": 89680,
+    "PTotalTerritory": 3
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Mendoza",
+    "Capital": "Mendoza",
+    "Population": 1990338,
+    "PTotalPopulation": 5,
+    "Density": 13.0,
+    "Territory": 148827,
+    "PTotalTerritory": 5
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Misiones",
+    "Capital": "Posadas",
+    "Population": 1261294,
+    "PTotalPopulation": 3,
+    "Density": 42.0,
+    "Territory": 29801 ,
+    "PTotalTerritory": 1
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Neuquén",
+    "Capital": "Neuquén",
+    "Population": 664057,
+    "PTotalPopulation": 2,
+    "Density": 7.1,
+    "Territory": 94078,
+    "PTotalTerritory": 3
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Rio Negro",
+    "Capital": "Viedma",
+    "Population": 747610 ,
+    "PTotalPopulation": 2,
+    "Density": 3.7,
+    "Territory": 203013 ,
+    "PTotalTerritory": 7
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "Salta",
+    "Capital": "Salta",
+    "Population": 1424397,
+    "PTotalPopulation": 3,
+    "Density": 9.2,
+    "Territory": 155488 ,
+    "PTotalTerritory": 6
   },
   {
-    "Name": "Buenos Aires",
-    "Capital": "La Plata",
-    "Population": 17541141,
-    "PTotalPopulation": 41,
-    "Density": 57.0,
-    "Territory": 307571,
-    "PTotalTerritory": 11
+    "Name": "San Juan",
+    "Capital": "San Juan",
+    "Population": 781217,
+    "PTotalPopulation": 2,
+    "Density": 8.7,
+    "Territory": 89651 ,
+    "PTotalTerritory": 3
+  },
+  {
+    "Name": "San Luis",
+    "Capital": "San Luis",
+    "Population": 508328,
+    "PTotalPopulation": 1,
+    "Density": 6.6,
+    "Territory": 76748,
+    "PTotalTerritory": 3
+  },
+  {
+    "Name": "Santa Cruz",
+    "Capital": "Rio Gallegos",
+    "Population": 365698 ,
+    "PTotalPopulation": 1,
+    "Density": 1.5,
+    "Territory": 243943 ,
+    "PTotalTerritory": 9
+  },
+  {
+    "Name": "Santa Fe",
+    "Capital": "Santa Fe",
+    "Population": 3536418 ,
+    "PTotalPopulation": 8,
+    "Density": 27.0,
+    "Territory": 133007 ,
+    "PTotalTerritory": 5
+  },
+  {
+    "Name": "Santiago del Estero",
+    "Capital": "Santiago del Estero",
+    "Population": 978313,
+    "PTotalPopulation": 2,
+    "Density": 7.2,
+    "Territory": 136351,
+    "PTotalTerritory": 5
+  },
+  {
+    "Name": "Tierra del Fuego",
+    "Capital": "Ushuaia",
+    "Population": 173432 ,
+    "PTotalPopulation": 0,
+    "Density": 8.0,
+    "Territory":21571,
+    "PTotalTerritory": 1
+  },
+  {
+    "Name": "Tucumán",
+    "Capital": "San Miguel de Tucumán",
+    "Population": 1694656,
+    "PTotalPopulation": 4,
+    "Density": 64.0,
+    "Territory": 22524,
+    "PTotalTerritory": 1
   }
 ]
