@@ -14,15 +14,24 @@
 else
 {
     <Row>
-    <div class="d-flex ma-2">
-    <MudText class="mt-3">Ingrese el nombre del archivo Json que quiere crear : </MudText>
+    <div class="d-flex">
+    <MudText class="mt-1 pr-2">Click in the button to read data from file provinces.json : </MudText>
+        <MudButton Color="Color.Primary" Size="Size.Small" Clearable="true" Variant="Variant.Outlined" OnClick="GetAllProvinces">
+            <MudText>Read Data</MudText>
+        </MudButton>
+    </div>
+    </Row>  
+    <br />
+    <Row>
+    <div class="d-flex">
+    <MudText class="mt-3 pr-2">Enter the name of the json file you want to create : </MudText>
 
-    <MudTextField Style="width:300px" Margin="Margin.Dense" Inmediate="true" @bind-Value="jsonpath" Variant="Variant.Outlined"></MudTextField>
-        <MudButton Color="Color.Primary" Size="Size.Small" Clearable="true" Variant="Variant.Outlined" EndIcon="@Icons.Material.Filled.ArrowDownward" OnClick="WriteToJsonProvinces">
+    <MudTextField class="pr-2" Style="width:300px" Margin="Margin.Dense" Inmediate="true" @bind-Value="jsonpath" Variant="Variant.Outlined"></MudTextField>
+        <MudButton Color="Color.Primary" Size="Size.Small" Variant="Variant.Outlined" EndIcon="@Icons.Material.Filled.ArrowDownward" OnClick="WriteToJsonProvinces">
     
         @if (_processing)
         {
-                        <MudText>Json saved!</MudText>
+                        <MudText>Json created!</MudText>
         }
         else
         {
@@ -31,18 +40,24 @@ else
         </MudButton>
     </div>
     </Row>
-    <MudTable Items="@provinces" Hover="true" SortLabel="Sort By" Elevation="0">
+    <MudTable Items="@provinces" SortLabel="Sort By" Elevation="0" Hover="true" Bordered="true" Striped="true">
         <HeaderContent>
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Provinces, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Capital)">Capital</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Population)">Population</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Territory)">Territory</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.PTotalPopulation)">% Total Pop.</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Density)">Density Pop/km2</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Territory)">Territory (km2)</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.PTotalTerritory)">% Total Territory</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Name">@context.Name</MudTd>
             <MudTd DataLabel="Capital">@context.Capital</MudTd>
             <MudTd DataLabel="Population">@context.Population</MudTd>
+            <MudTd DataLabel="PTotalPopulation">@context.PTotalPopulation</MudTd>
+            <MudTd DataLabel="Density">@context.Density</MudTd>
             <MudTd DataLabel="Territory">@context.Territory</MudTd>
+            <MudTd DataLabel="PTotalTerritory">@context.PTotalTerritory</MudTd>
         </RowTemplate>
         <PagerContent>
             <MudTablePager PageSizeOptions="new int[]{50, 100}" />
@@ -61,7 +76,7 @@ else
     {
         try
         {
-            GetAllProvinces();
+            
         }
         catch (Exception e)
         {
@@ -76,7 +91,7 @@ else
             string json = r.ReadToEnd();
             provinces = JsonConvert.DeserializeObject<List<Provinces>>(json);
         }
-
+        
     }
 
     public void WriteToJsonProvinces()
@@ -88,7 +103,10 @@ else
                 Name = d.Name,
                 Capital = d.Capital,
                 Population = d.Population,
-                Territory = d.Territory
+                Territory = d.Territory,
+                Density = d.Density,
+                PTotalPopulation = d.PTotalPopulation,
+                PTotalTerritory = d.PTotalTerritory
             }).ToList();
 
         File.WriteAllText(jpath, JsonConvert.SerializeObject(destination, Formatting.Indented));
