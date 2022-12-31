@@ -39,8 +39,19 @@ else
         }
         </MudButton>
     </div>
+    <br/><br/>
     </Row>
-    <MudTable Items="@provinces" SortLabel="Sort By" Elevation="0" Hover="true" Bordered="true" Striped="true">
+        <MudTable Items="@provinces" SortLabel="Sort By" Elevation="0" Hover="true" Bordered="true" Striped="true" Filter="new Func<Provinces,bool>(FilterFunc)">
+        <ToolBarContent>
+                 <MudText Typo="Typo.h6">Argentina Provinces</MudText>
+                <MudSpacer />
+                <MudSelect @bind-Value="stringValue" Dense="true" T="string" Label="Search By..." Variant="Variant.Text"  Class="mt-0 px-1" style="max-width: 250px">
+                    <MudSelectItem Value="@("Name")" >Province</MudSelectItem>
+                    <MudSelectItem Value="@("Capital")" >Capital</MudSelectItem>
+                </MudSelect>
+                <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
+                </MudTextField>
+        </ToolBarContent>
         <HeaderContent>
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Provinces, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Capital)">Capital</MudTableSortLabel></MudTh>
@@ -60,7 +71,7 @@ else
             <MudTd DataLabel="PTotalTerritory">@context.PTotalTerritory</MudTd>
         </RowTemplate>
         <PagerContent>
-            <MudTablePager PageSizeOptions="new int[]{50, 100}" />
+            <MudTablePager PageSizeOptions="new int[]{10, 20, 30}" />
         </PagerContent>
     </MudTable>
 }
@@ -68,9 +79,11 @@ else
 
 @code {
     private List<Provinces> provinces = new List<Provinces>();
-    public string? Message { get; set; }
-    public string jsonpath { get; set; }
+    private string? Message { get; set; }
+    private string jsonpath { get; set; }
     private bool _processing = false;
+    private string searchString = "";
+    private string stringValue { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -112,6 +125,24 @@ else
         File.WriteAllText(jpath, JsonConvert.SerializeObject(destination, Formatting.Indented));
         _processing = true;
 
+    }
+
+    private bool FilterFunc(Provinces province)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (stringValue == "Capital")
+        {
+            if (province.Capital.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        if (province.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (province.Capital.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        //if ($"{province.Population} {province.Density} {province.Territory}".Contains(searchString))
+        //    return true;
+        return false;
     }
 
 }
