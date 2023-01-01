@@ -1,6 +1,7 @@
 ﻿@page "/crudexample"
 @using BlazorCrud.Data
 @using Newtonsoft.Json
+@inject ISnackbar Snackbar
 
 <PageTitle>Crud Example with Blazor using MudBlazor</PageTitle>
 
@@ -41,7 +42,9 @@ else
     </div>
     <br/><br/>
     </Row>
-        <MudTable Items="@provinces" SortLabel="Sort By" Elevation="0" Hover="true" Bordered="true" Striped="true" Filter="new Func<Provinces,bool>(FilterFunc)">
+    <MudTable Items="@provinces" SortLabel="Sort By" Elevation="0" Hover="true" Bordered="true" Striped="true" Filter="new Func<Provinces,bool>(FilterFunc)" 
+                CommitEditTooltip="Commit Edit" RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues" CanCancelEdit="true" CancelEditTooltip="Cancel Changes" OnCancelEditClick="@(() => ChangeSnack("Canceled Changes", Variant.Outlined, Severity.Error))"
+                IsEditRowSwitchingBlocked="true" EditButtonPosition="TableEditButtonPosition.End" EditTrigger="TableEditTrigger.EditButton" OnCommitEditClick="@(() => ChangeSnack("Succeed Making Changes", Variant.Outlined, Severity.Success))">
         <ToolBarContent>
                  <MudText Typo="Typo.h6">Argentina Provinces</MudText>
                 <MudSpacer />
@@ -52,11 +55,21 @@ else
                 <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
                 </MudTextField>
         </ToolBarContent>
+        <ColGroup>
+            <col style="width:20%;" />
+            <col style="width:20%;" />
+            <col style="width:12%;" />
+            <col style="width:10%;" />
+            <col style="width:10%;" />
+            <col style="width:10%;" />
+            <col style="width:8%;" />
+            <col style="width:40px;" />
+        </ColGroup>
         <HeaderContent>
-            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Provinces, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Provinces, object>(x=>x.Name)">Province Name</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Capital)">Capital</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Population)">Population</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.PTotalPopulation)">% Total Pop.</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.PTotalPopulation)">% Total Population</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Density)">Density Pop/km2</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.Territory)">Territory (km2)</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Provinces, object>(x=>x.PTotalTerritory)">% Total Territory</MudTableSortLabel></MudTh>
@@ -70,9 +83,33 @@ else
             <MudTd DataLabel="Territory">@context.Territory</MudTd>
             <MudTd DataLabel="PTotalTerritory">@context.PTotalTerritory</MudTd>
         </RowTemplate>
+        <RowEditingTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Capital">
+                <MudTextField @bind-Value="@context.Capital" Required />
+            </MudTd>
+            <MudTd DataLabel="Population">
+                <MudTextField @bind-Value="@context.Population" Required />
+            </MudTd>
+            <MudTd DataLabel="PTotalPopulation">
+                <MudTextField @bind-Value="@context.PTotalPopulation" Required />
+            </MudTd>
+            <MudTd DataLabel="Density">
+                <MudTextField @bind-Value="@context.Density" Required />
+            </MudTd>
+            <MudTd DataLabel="Territory">
+                <MudTextField @bind-Value="@context.Territory" Required />
+            </MudTd>
+            <MudTd DataLabel="PTotalTerritory">
+                <MudTextField @bind-Value="@context.PTotalTerritory" Required />
+            </MudTd>
+        </RowEditingTemplate>
         <PagerContent>
             <MudTablePager PageSizeOptions="new int[]{10, 20, 30}" />
         </PagerContent>
+        <EditButtonContent Context="button">
+            <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" Class="pa-0" OnClick="@button.ButtonAction" Disabled="@button.ButtonDisabled" />
+        </EditButtonContent>
     </MudTable>
 }
 
@@ -84,6 +121,8 @@ else
     private bool _processing = false;
     private string searchString = "";
     private string stringValue { get; set; }
+
+    private Provinces elementBeforeEdit;
 
     protected override async Task OnInitializedAsync()
     {
@@ -127,10 +166,41 @@ else
 
     }
 
+    private void BackupItem(object element)
+    {
+        elementBeforeEdit = new()
+            {
+                Name = ((Provinces)element).Name,
+                Capital = ((Provinces)element).Capital,
+                Population = ((Provinces)element).Population,
+                Territory = ((Provinces)element).Territory,
+                Density = ((Provinces)element).Density,
+                PTotalPopulation = ((Provinces)element).PTotalPopulation,
+                PTotalTerritory = ((Provinces)element).PTotalTerritory,
+            };
+    }
+
+    private void ResetItemToOriginalValues(object element)
+    {
+        ((Provinces)element).Name = elementBeforeEdit.Name;
+        ((Provinces)element).Capital = elementBeforeEdit.Capital;
+        ((Provinces)element).Population = elementBeforeEdit.Population;
+        ((Provinces)element).Territory = elementBeforeEdit.Territory;
+        ((Provinces)element).Density = elementBeforeEdit.Density;
+        ((Provinces)element).PTotalPopulation = elementBeforeEdit.PTotalPopulation;
+        ((Provinces)element).PTotalTerritory = elementBeforeEdit.PTotalTerritory;
+    }
+
     private bool FilterFunc(Provinces province)
     {
         if (string.IsNullOrWhiteSpace(searchString))
             return true;
+
+        if (stringValue == "Name")
+        {
+            if (province.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        }
         if (stringValue == "Capital")
         {
             if (province.Capital.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
@@ -138,11 +208,16 @@ else
         }
         if (province.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
             return true;
-        if (province.Capital.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
         //if ($"{province.Population} {province.Density} {province.Territory}".Contains(searchString))
         //    return true;
         return false;
+    }
+
+    void ChangeSnack(string message, Variant variant, Severity severity)
+    {
+        Snackbar.Configuration.SnackbarVariant = variant;
+        Snackbar.Configuration.MaxDisplayedSnackbars = 2;
+        Snackbar.Add($"{message}", severity, config => { config.ShowCloseIcon = false; });
     }
 
 }
