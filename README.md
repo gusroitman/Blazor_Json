@@ -49,7 +49,7 @@ builder.Services.AddMudServices();
 ___
 #### Screenshot :
 
-![This is an image](https://github.com/gusroitman/Blazor_Json/blob/master/Charts_MudBlazor/wwwroot/images/chartsample1.png)
+![This is an image](https://github.com/gusroitman/Blazor_Json/blob/master/wwwroot/images/chartsample1.png)
 
 ---
 If you have any questions feel free to ask. :right_anger_bubble:
